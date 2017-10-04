@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getSnaps } from '../actions'
+import { Link } from 'react-router-dom'
 import App from 'grommet/components/App';
 import Title from 'grommet/components/Title';
 import Box from 'grommet/components/Box'
@@ -9,6 +10,9 @@ import Header from 'grommet/components/Header'
 import Footer from 'grommet/components/Footer'
 import Tiles from 'grommet/components/Tiles'
 import Tile from 'grommet/components/Tile'
+import Pulse from 'grommet/components/icons/Pulse'
+import Add from 'grommet/components/icons/base/Add'
+import Anchor from 'grommet/components/Anchor'
 
 class SnapsView extends Component {
     componentWillMount(){
@@ -38,6 +42,15 @@ class SnapsView extends Component {
                     <Title>SnapsView</Title>
                 </Header>
                 <Box pad="small">
+                    <Box align="center">
+                        <Anchor
+                        align="end"
+                        label="Add a Snap"
+                        icon={<Pulse icon={<Add />} />}
+                        path="/snaps/new"
+                        primary
+                        />
+                    </Box>
                     <Tiles fill selectable onSelect={()=>console.log('selected!')}>
                         {this.renderSnaps(this.props.snaps)}
                     </Tiles>
