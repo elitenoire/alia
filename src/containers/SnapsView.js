@@ -48,7 +48,6 @@ class SnapsView extends Component {
                         label="Add a Snap"
                         icon={<Pulse icon={<Add />} />}
                         path="/snaps/new"
-                        primary
                         />
                     </Box>
                     <Tiles fill selectable onSelect={()=>console.log('selected!')}>
