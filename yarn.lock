@@ -5630,6 +5630,10 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-form-binding-grommet@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/redux-form-binding-grommet/-/redux-form-binding-grommet-0.0.2.tgz#724a11db19401714d699b229e55bef1bda9e9432"
+
 redux-form@^7.0.4:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.0.4.tgz#2297b6bed40fda8bb58132e261ba0976fb4e530c"
