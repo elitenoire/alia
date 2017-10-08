@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getSnaps } from '../actions'
 import { Link } from 'react-router-dom'
-import App from 'grommet/components/App';
-import Title from 'grommet/components/Title';
-import Box from 'grommet/components/Box'
-import Card from 'grommet/components/Card'
-import Header from 'grommet/components/Header'
-import Footer from 'grommet/components/Footer'
-import Tiles from 'grommet/components/Tiles'
-import Tile from 'grommet/components/Tile'
-import Pulse from 'grommet/components/icons/Pulse'
-import Add from 'grommet/components/icons/base/Add'
-import Anchor from 'grommet/components/Anchor'
+import { App, Title, Box, Card, Header, Footer, Tiles, Tile, Anchor, Icons} from 'grommet'
 
 class SnapsView extends Component {
     componentWillMount(){
@@ -46,7 +36,7 @@ class SnapsView extends Component {
                         <Anchor
                         align="end"
                         label="Add a Snap"
-                        icon={<Pulse icon={<Add />} />}
+                        icon={<Icons.Pulse />}
                         path="/snaps/new"
                         />
                     </Box>
