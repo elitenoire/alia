@@ -24,21 +24,35 @@ export default ({
   onSelect,
   placeholder,
   ...props
-}) => ({
-  onDOMChange: event => {
-    inputProps.onChange(event.target.value)
-    if (onDOMChange) onDOMChange(event)
-  },
-  onChange: event => {
-    inputProps.onChange(event.target.value)
-    if (onChange) onChange(event)
-  },
-  onSelect: event => {
-    inputProps.onChange(event.suggestion)
-    if (onSelect) onSelect(event)
-  },
-  value: inputProps.value,
-  placeHolder: placeholder,
-  ...mapError(props)
-})
+}, componentName ) => {
+
+  const textInput = {
+    onDOMChange: event => {
+      inputProps.onChange(event.target.value)
+      if (onDOMChange) onDOMChange(event)
+    },
+    onSelect: event => {
+      inputProps.onChange(event.suggestion)
+      if (onSelect) onSelect(event)
+    },
+    placeHolder: placeholder,
+  }
+
+  const textArea = {
+    onChange: event => {
+      inputProps.onChange(event.target.value)
+      if (onChange) onChange(event)
+    },
+  }
+
+  const Component = componentName? textInput : textArea
+
+  return {  ...Component,
+            value: inputProps.value,
+            ...mapError(props)
+  }
+}
+
+
+
 
