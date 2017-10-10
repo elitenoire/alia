@@ -17,4 +17,15 @@ api.getSnaps = async () => {
  }
 }
 
+api.createSnap = async (snap) => {
+    try{
+        console.log('creating snap with : ', snap)
+        const response = await client.post('/posts' + API_KEY, snap)
+        return { response }
+    }
+    catch(err){
+        return {error : err.message}
+    }
+}
+
 export { api }

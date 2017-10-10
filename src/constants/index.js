@@ -1,3 +1,6 @@
 export const GET_SNAPS = 'GET_SNAPS'
 export const GET_SNAPS_PASS = 'GET_SNAPS_PASS'
 export const GET_SNAPS_FAIL = 'GET_SNAPS_FAIL'
+export const CREATE_SNAP = 'CREATE_SNAP'
+export const CREATE_SNAP_PASS = 'CREATE_SNAP_PASS'
+export const CREATE_SNAP_FAIL = 'CREATE_SNAP_FAIL'

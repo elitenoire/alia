@@ -15,6 +15,6 @@ function* loadSnaps(){
 
 
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
-export default function* watchSnapsRoute(){
+export default function* watchGetAllSnaps(){
     yield takeLatest(GET_SNAPS, loadSnaps)
 }

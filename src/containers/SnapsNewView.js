@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
+import TextArea from 'react-autosize-textarea'
 import { App, Article, Header, Heading, Section, Footer, Box, Button, Form, FormFields, TextInput } from 'grommet'
 import grommetWrap from '../utils/grommet-wrap'
-import TextArea from 'react-autosize-textarea'
+import { createSnap } from '../actions'
 
 class SnapsNewView extends Component {
     TextInputWithFormField = grommetWrap(TextInput)
@@ -11,7 +12,7 @@ class SnapsNewView extends Component {
     TextAreaWithFormField = grommetWrap(TextArea)
 
     onSubmit = values => {
-        console.log('Form Values: ', values)
+        this.props.createSnap(values)
     }
 
     render() {
@@ -59,4 +60,5 @@ const validate = values => {
     }, {})
 }
 
-export default reduxForm({form:'NewSnapForm', validate})(SnapsNewView)
+export default reduxForm({form:'NewSnapForm', validate})
+(connect(null, { createSnap })(SnapsNewView))
