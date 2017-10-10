@@ -1,19 +1,16 @@
 const mapError = (
-    {
-      meta: { touched, error, warning } = {},
-      input,
-      ...props
-    }
-  ) => (touched && (error || warning) ? {
-    ...props,
-    ...input,
-    error: error || warning
-  } : {
-    ...input, ...props
-  })
-
-
-
+  {
+    meta: { touched, error, warning } = {},
+    input,
+    ...props
+  }
+) => ( touched && (error || warning) ? {
+  ...props,
+  ...input,
+  error: error || warning
+} : {
+  ...input, ...props
+})
 
 export default ({
   input: { ...inputProps },
@@ -44,7 +41,6 @@ export default ({
       if (onChange) onChange(event)
     },
   }
-
   const Component = componentName? textInput : textArea
 
   return {  ...Component,
@@ -52,6 +48,7 @@ export default ({
             ...mapError(props)
   }
 }
+
 
 
 

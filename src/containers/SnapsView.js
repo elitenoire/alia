@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getSnaps } from '../actions'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { App, Title, Box, Card, Header, Footer, Tiles, Tile, Anchor, Icons} from 'grommet'
 
 class SnapsView extends Component {
