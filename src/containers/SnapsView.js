@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getSnaps } from '../actions'
 // import { Link } from 'react-router-dom'
-import { App, Title, Box, Card, Header, Footer, Tiles, Tile, Anchor, Icons} from 'grommet'
+import { App, Title, Box, Card, Header, Footer, Label, Tiles, Tile, Anchor, Icons} from 'grommet'
 
 class SnapsView extends Component {
     componentWillMount(){
@@ -31,14 +31,13 @@ class SnapsView extends Component {
                 pad={{ horizontal: 'medium' }}>
                     <Title>SnapsView</Title>
                 </Header>
-                <Box pad="small">
-                    <Box align="center">
+                <Box pad="large">
+                    <Box direction="row" align="center" justify="center">
                         <Anchor
-                        align="end"
-                        label="Add a Snap"
                         icon={<Icons.Pulse />}
                         path="/snaps/new"
                         />
+                        <Label>New Snap</Label>
                     </Box>
                     <Tiles fill selectable onSelect={()=>console.log('selected!')}>
                         {this.renderSnaps(this.props.snaps)}

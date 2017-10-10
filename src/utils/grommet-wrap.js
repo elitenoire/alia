@@ -9,7 +9,6 @@ export default function grommetWrap(GrommetComponent) {
         }
         render() {
             const { help, label, error, ...rest } = mapProps(this.props, GrommetComponent.displayName)
-            console.log(mapProps(this.props, GrommetComponent.displayName))
             return (
             <FormField
                 htmlFor={rest.id}
