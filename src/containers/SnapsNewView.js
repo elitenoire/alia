@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import TextArea from 'react-autosize-textarea'
 import { App, Article, Header, Heading, Section, Footer, Box, Button, Form, FormFields, TextInput } from 'grommet'
 import grommetWrap from '../utils/grommet-wrap'
-import { createSnap } from '../actions'
+import { submitSnap, cancelCreateSnap } from '../actions'
 
 class SnapsNewView extends Component {
     TextInputWithFormField = grommetWrap(TextInput)
@@ -12,7 +12,11 @@ class SnapsNewView extends Component {
     TextAreaWithFormField = grommetWrap(TextArea)
 
     onSubmit = values => {
-        this.props.createSnap(values)
+        this.props.submitSnap(values, formName)
+    }
+
+    onCancel = () => {
+        this.props.cancelCreateSnap(formName, '/')
     }
 
     render() {
@@ -39,7 +43,7 @@ class SnapsNewView extends Component {
                         <Footer justify="end">
                             <Box direction="row" align="center" pad={{between : 'small'}}>
                                 <Button label="Save" type="submit" accent />
-                                <Button label="Cancel" path="/" critical />
+                                <Button label="Cancel" type="button" onClick={this.onCancel} critical />
                             </Box>
                         </Footer>
                     </Article>
@@ -48,6 +52,8 @@ class SnapsNewView extends Component {
         );
     }
 }
+
+const formName = 'NewSnapForm'
 
 const validate = values => {
     const required = ['title', 'categories', 'content']
@@ -60,5 +66,5 @@ const validate = values => {
     }, {})
 }
 
-export default reduxForm({form:'NewSnapForm', validate})
-(connect(null, { createSnap })(SnapsNewView))
+export default reduxForm({form:formName, validate})
+(connect(null, { submitSnap, cancelCreateSnap })(SnapsNewView))

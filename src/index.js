@@ -5,12 +5,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createReduxSaga from 'redux-saga';
-import { BrowserRouter } from 'react-router-dom'
-import Router from './routes';
+// import { BrowserRouter } from 'react-router-dom'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 
+import Router from './routes';
 import reducers from './reducers';
 import rootSaga from './sagas';
-import Main from './containers/Main';
+// import Main from './containers/Main';
 import registerServiceWorker from './registerServiceWorker';
 
 // import App from 'grommet/components/App';
@@ -18,16 +20,18 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const history = createHistory();
 const reduxSaga = createReduxSaga();
-const store = createStore(reducers, composeEnhancers(applyMiddleware(reduxSaga)))
+const middlewares = [routerMiddleware(history), reduxSaga]
+const store = createStore(reducers, composeEnhancers(applyMiddleware(...middlewares)))
 
 reduxSaga.run(rootSaga)
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <Router />
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>
     , document.getElementById('root'));
 
