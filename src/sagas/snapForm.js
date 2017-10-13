@@ -1,5 +1,5 @@
 // import { stopSubmit } from 'redux-form'
-import { takeEvery, take, call, put, race} from 'redux-saga/effects'
+import { takeEvery, take, put, race} from 'redux-saga/effects'
 import { LOCATION_CHANGE, push } from 'react-router-redux'
 import { SUBMIT_SNAP, CANCEL_CREATE_SNAP } from '../constants'
 import { createSnap } from '../actions'

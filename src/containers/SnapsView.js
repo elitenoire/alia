@@ -5,7 +5,7 @@ import { getSnaps } from '../actions'
 import { App, Title, Box, Card, Header, Footer, Label, Tiles, Tile, Anchor, Icons} from 'grommet'
 
 class SnapsView extends Component {
-    componentWillMount(){
+    componentDidMount(){
         this.props.getSnaps()
     }
 

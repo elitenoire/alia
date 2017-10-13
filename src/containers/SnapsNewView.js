@@ -66,5 +66,4 @@ const validate = values => {
     }, {})
 }
 
-export default reduxForm({form:formName, validate})
-(connect(null, { submitSnap, cancelCreateSnap })(SnapsNewView))
+export default reduxForm({form:formName, validate})(connect(null, { submitSnap, cancelCreateSnap })(SnapsNewView))

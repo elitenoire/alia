@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSingleSnap, deleteSnap } from '../actions'
-import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Section, Box, Button, Icons } from 'grommet'
+import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Box, Button, Icons } from 'grommet'
 
-const { Aed, Note, Edit, Tag, Trash, LinkPrevious } = Icons.Base
+const { Note, Edit, Tag, Trash, LinkPrevious } = Icons.Base
 
 class SnapSingleView extends Component {
     componentWillMount(){
@@ -48,7 +48,6 @@ class SnapSingleView extends Component {
                     )
     }
     render(){
-        const { snap } = this.props
         return (
             <App>
                 <Article>
