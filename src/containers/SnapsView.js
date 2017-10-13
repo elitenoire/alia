@@ -6,14 +6,17 @@ import { App, Title, Box, Card, Header, Footer, Label, Tiles, Tile, Anchor, Icon
 
 class SnapsView extends Component {
     componentWillMount(){
-        console.log('Fetching snaps..')
         this.props.getSnaps()
+    }
+
+    onSelectSnap(id){
+        this.props.history.push(`/snaps/${id}`)
     }
 
     renderSnaps = (snaps) => {
         return Object.keys(snaps).reduce((list,id) => {
             list.push(
-                <Tile key={id}>
+                <Tile key={id} onClick={this.onSelectSnap.bind(this, id)}>
                     <Card label={snaps[id].categories}
                     heading={snaps[id].title}
                     contentPad="small"
@@ -24,7 +27,6 @@ class SnapsView extends Component {
         }, [])
     }
     render() {
-        console.log(this.props.snaps)
         return (
             <App >
                 <Header direction="row" justify="between" size="large"
@@ -39,7 +41,7 @@ class SnapsView extends Component {
                         />
                         <Label>New Snap</Label>
                     </Box>
-                    <Tiles fill selectable onSelect={()=>console.log('selected!')}>
+                    <Tiles fill selectable >
                         {this.renderSnaps(this.props.snaps)}
                     </Tiles>
                 </Box>
