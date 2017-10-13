@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getSingleSnap } from '../actions'
+import { getSingleSnap, deleteSnap } from '../actions'
 import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Section, Box, Button, Icons } from 'grommet'
 
 const { Aed, Note, Edit, Tag, Trash, LinkPrevious } = Icons.Base
@@ -11,7 +11,10 @@ class SnapSingleView extends Component {
         this.props.getSingleSnap(id)
     }
     onEdit = () => {}
-    onDelete = () => {}
+    onDelete = () => {
+        const { id } = this.props.match.params
+        this.props.deleteSnap(id)
+    }
     renderSnap = () => {
         const { isFetching, snap } = this.props
         return isFetching ? <Icons.Spinning size="xlarge"/>
@@ -68,4 +71,4 @@ const mapStateToProps = ({ snaps : {snaps, isFetching} }, ownProps) => {
     return {snap : snaps[ownProps.match.params.id], isFetching}
 }
 
-export default connect(mapStateToProps, { getSingleSnap })(SnapSingleView)
+export default connect(mapStateToProps, { getSingleSnap, deleteSnap })(SnapSingleView)
