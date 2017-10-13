@@ -17,6 +17,16 @@ api.getSnaps = async () => {
  }
 }
 
+api.getSingleSnap = async (id) => {
+    try {
+        const response = await client.get('/posts/' + id + API_KEY)
+        return { response }
+    }
+    catch(err){
+        return {error : err.messageg}
+    }
+}
+
 api.createSnap = async (snap) => {
     try{
         console.log('creating snap with : ', snap)

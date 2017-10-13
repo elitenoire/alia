@@ -1,8 +1,15 @@
-import { GET_SNAPS, CREATE_SNAP, CANCEL_CREATE_SNAP , SUBMIT_SNAP} from '../constants'
+import { GET_SNAPS, GET_SNAP_SINGLE, CREATE_SNAP, CANCEL_CREATE_SNAP , SUBMIT_SNAP} from '../constants'
 
 export const getSnaps = () => {
     return {
         type : GET_SNAPS
+    }
+}
+
+export const getSingleSnap = (id) => {
+    return {
+        type : GET_SNAP_SINGLE,
+        id
     }
 }
 
