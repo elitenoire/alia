@@ -8,9 +8,10 @@ const Router = () => {
     return (
         <div>
             <Switch>
-                <Route path="/" exact component={SnapsView}></Route>
-                <Route path="/snaps/new" component={SnapsNewView}></Route>
-                <Route path="/snaps/:id" component={SnapSingleView}></Route>
+                <Route path="/" exact component={SnapsView} />
+                <Route path="/snaps/new" render={props => <SnapsNewView {...props, mode="Create New"} />} />
+                <Route path="/snaps/edit/:id" render={props => <SnapsNewView {...props, mode="Edit"} />} />
+                <Route path="/snaps/:id" component={SnapSingleView} />
             </Switch>
             {/* <Route path="" component={}></Route>
             <Route path="" component={}></Route> */}

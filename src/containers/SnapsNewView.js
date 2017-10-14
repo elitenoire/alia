@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form'
-import TextArea from 'react-autosize-textarea'
-import { App, Article, Header, Heading, Section, Footer, Box, Button, Form, FormFields, TextInput } from 'grommet'
-import grommetWrap from '../utils/grommet-wrap'
+import { reduxForm } from 'redux-form'
+import { App, Box } from 'grommet'
+import SnapForm from '../components/SnapForm'
 import { submitSnap, cancelCreateSnap } from '../actions'
 
 class SnapsNewView extends Component {
-    TextInputWithFormField = grommetWrap(TextInput)
-
-    TextAreaWithFormField = grommetWrap(TextArea)
 
     onSubmit = values => {
-        this.props.submitSnap(values, formName)
+        const { mode, submitSnap } = this.props
+        this.props.submitSnap(values, mode)
     }
 
     onCancel = () => {
@@ -20,34 +17,13 @@ class SnapsNewView extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props
         return (
             <App>
-                <Form onSubmit={handleSubmit(this.onSubmit)}>
-                    <Article>
-                        <Header>
-                            <Heading>Snaps View New</Heading>
-                        </Header>
-                        <Section>
-                            <FormFields>
-                                <Field name="title" label="Title" id="title-1" placeholder="Snap Title"
-                                    component={this.TextInputWithFormField} />
-
-                                <Field name="categories" label="Categories" id="tags-1" placeholder="Tags"
-                                    component={this.TextInputWithFormField} />
-
-                                <Field name="content" label="Content" id="content-1" rows={5}
-                                    component={this.TextAreaWithFormField} />
-                            </FormFields>
-                        </Section>
-                        <Footer justify="end">
-                            <Box direction="row" align="center" pad={{between : 'small'}}>
-                                <Button label="Save" type="submit" accent />
-                                <Button label="Cancel" type="button" onClick={this.onCancel} critical />
-                            </Box>
-                        </Footer>
-                    </Article>
-                </Form>
+                <Box>
+                    <SnapForm {
+                        ...this.props, onSubmit={onSubmit}, onCancel={this.onCancel}, value={this.props.snap}
+                    } />
+                </Box>
             </App>
         );
     }
@@ -66,4 +42,16 @@ const validate = values => {
     }, {})
 }
 
-export default reduxForm({form:formName, validate})(connect(null, { submitSnap, cancelCreateSnap })(SnapsNewView))
+const mapStateToProps = ({ snaps : { snaps } }, ownProps) => {
+    return {snap : snaps[ownProps.match.params.id]}
+}
+
+export default reduxForm(
+    {form:formName, validate}
+)(
+    connect(
+        mapStateToProps, { submitSnap, cancelCreateSnap }
+    )(
+        SnapsNewView
+    )
+)
