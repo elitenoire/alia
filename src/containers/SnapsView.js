@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getSnaps, selectSnap } from '../actions'
+import { getSnaps, selectSnap, addSnap } from '../actions'
 // import { Link } from 'react-router-dom'
 import { App, Title, Box, Card, Header, Footer, Label, Tiles, Tile, Anchor, Icons} from 'grommet'
 
@@ -12,6 +12,10 @@ class SnapsView extends Component {
     onSelectSnap(id){ //TODO : decouple select event from button
         // this.props.history.push(`/snaps/${id}`)
         this.props.selectSnap(id)
+    }
+
+    onAddSnap = () => {
+        this.props.addSnap()
     }
 
     renderSnaps = (snaps) => {
@@ -38,7 +42,8 @@ class SnapsView extends Component {
                     <Box direction="row" align="center" justify="center">
                         <Anchor
                         icon={<Icons.Pulse />}
-                        path="/snaps/new"
+                        onClick={this.onAddSnap}
+                        target={''}
                         />
                         <Label>New Snap</Label>
                     </Box>
@@ -52,4 +57,4 @@ class SnapsView extends Component {
     }
 }
 
-export default connect(({snaps : {snaps}})=>({snaps}), { getSnaps, selectSnap })(SnapsView)
+export default connect(({snaps : {snaps}})=>({snaps}), { getSnaps, selectSnap, addSnap })(SnapsView)

@@ -11,7 +11,7 @@ export default SnapForm = (props) => {
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Article>
                 <Header>
-                    <Heading>{`${mode} Snap`}</Heading>
+                    <Heading>{`${mode[0].toUpperCase() + mode.slice(1)} Snap`}</Heading>
                 </Header>
                 <Section>
                     <FormFields>

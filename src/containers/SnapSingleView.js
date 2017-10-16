@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSingleSnap, deleteSnap, editSnap } from '../actions'
-import { EDIT_SNAP_PATH } from '../constants'
+// import { EDIT_SNAP_PATH } from '../constants'
 import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Box, Button, Icons } from 'grommet'
 
 const { Note, Edit, Tag, Trash, LinkPrevious } = Icons.Base

@@ -2,28 +2,29 @@
 import { takeEvery, take, put, race} from 'redux-saga/effects'
 import { LOCATION_CHANGE, push } from 'react-router-redux'
 import { SUBMIT_SNAP, CANCEL_SNAP } from '../constants'
-import { createSnap, updateSnap } from '../actions'
+import { saveSnap } from '../actions'
 // import { api } from '../utils'
 
 function* manageSnapForm({ payload : { pathname } }){
     //doesn't cancel api call - need FIXING
-    if(pathname === '/snaps/new'){
+    if(pathname === '/snaps/new' || pathname.search(/^\/snaps\/edit\/\d+\/?$/) !== -1 ){
         const { cancel, submit } = yield race({
             cancel : take(CANCEL_SNAP),
             submit : take(SUBMIT_SNAP)
         })
         if(cancel){
-            yield put(push(cancel.path))
+            yield put({type : `CANCEL_${cancel.mode}_SNAP`})
             return //not necessary cuz of else statement
         }
         else {
             const { formName, snap, mode, id } = submit
-            if(mode === "Create New"){
-                yield put(createSnap(formName, snap))
-            }
-            if(mode === "Edit"){
-                yield put(updateSnap(formName, snap, id))
-            }
+            yield put(saveSnap(formName, snap, mode, id))
+            // if(mode === "Create New"){
+            //     yield put(createSnap(formName, snap))
+            // }
+            // if(mode === "Edit"){
+            //     yield put(updateSnap(formName, snap, id))
+            // }
         }
     }
     // yield race({
@@ -43,5 +44,6 @@ function* manageSnapForm({ payload : { pathname } }){
 
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
 export default function* watchSnapForm(){
+    //Will it trigger if path is typed in browser directly??
     yield takeEvery(LOCATION_CHANGE, manageSnapForm)
 }

@@ -1,6 +1,6 @@
 import { fork , all, spawn} from 'redux-saga/effects'
 import watchGetAllSnaps from './snaps'
-import watchCreateSnap from './createSnap'
+// import watchCreateSnap from './createSnap'
 import watchSaveSnap from './saveSnap'
 import watchSnapForm from './snapForm'
 import watchGetSingleSnap from './singleSnap'
@@ -13,7 +13,7 @@ export default function* rootSaga(){
     yield all([
         fork(watchGetAllSnaps),
         fork(watchSaveSnap),
-        fork(watchCreateSnap),
+        // fork(watchCreateSnap),
         fork(watchSnapForm),
         fork(watchGetSingleSnap),
         fork(watchDeleteSnap)

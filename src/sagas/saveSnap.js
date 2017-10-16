@@ -14,11 +14,12 @@ function* snapSaver({ type, snap, formName, id, path, method }){
         cancel : take(CANCEL_SNAP)// || LOCATION_CHANGE)
     })
     yield put(stopSubmit(formName, errors))
+
     if(submit){
         const { response, error } = submit
         if(response){
             yield put({type : `${type}_PASS`, snap : response.data})
-            yield put(push(path))
+            // yield put(push(path))
         }
         else{
             // errors = error
@@ -26,7 +27,8 @@ function* snapSaver({ type, snap, formName, id, path, method }){
         }
     }
     if(cancel){
-        yield put(push(cancel.path)) // path could still work
+        yield put({type : `CANCEL_${cancel.mode}_SNAP`})
+        // yield put(push(cancel.path)) // path could still work
     }
     // const { response, error } = yield call(api.createSnap, snap)
 }

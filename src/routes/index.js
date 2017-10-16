@@ -10,8 +10,8 @@ const Router = () => {
         <div>
             <Switch>
                 <Route path={HOME_PATH} exact component={SnapsView} />
-                <Route path={CREATE_SNAP_PATH} render={props => <SnapsNewView {...props} mode="Create New" />} />
-                <Route path={EDIT_SNAP_PATH + '/:id'} render={props => <SnapsNewView {...props} mode="Edit" />} />
+                <Route path={CREATE_SNAP_PATH} render={props => <SnapsNewView {...props} mode="CREATE" />} />
+                <Route path={EDIT_SNAP_PATH + '/:id'} render={props => <SnapsNewView {...props} mode="UPDATE" />} />
                 <Route path={VIEW_SNAP_PATH + '/:id'} component={SnapSingleView} />
             </Switch>
             {/* <Route path="" component={}></Route>

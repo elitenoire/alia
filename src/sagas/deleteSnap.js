@@ -9,7 +9,7 @@ function* deleteSingleSnap({ id, path }){
         yield put({type : DELETE_SNAP_FAIL, error})
     }
     else {
-        yield put(replace(path))
+        // yield put(replace(path))
         yield put({type : DELETE_SNAP_CACHE, id }) //delete from local cache
         // yield put({type : DELETE_SNAP_PASS })
     }

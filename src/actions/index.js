@@ -1,5 +1,5 @@
 import { GET_SNAPS, GET_SNAP_SINGLE, CREATE_SNAP, UPDATE_SNAP,
-    DELETE_SNAP, CANCEL_SNAP , SUBMIT_SNAP,
+    DELETE_SNAP, CANCEL_SNAP , SUBMIT_SNAP, ADD_SNAP, SELECT_SNAP, EDIT_SNAP,
     HOME_PATH, VIEW_SNAP_PATH } from '../constants'
 
 export const getSnaps = () => {
@@ -8,12 +8,33 @@ export const getSnaps = () => {
     }
 }
 
+export const addSnap = () => {
+    return {
+        type : ADD_SNAP
+    }
+}
+//***********NEED TO DRY CODE ************* */
 export const getSingleSnap = (id) => {
     return {
         type : GET_SNAP_SINGLE,
         id
     }
 }
+
+export const selectSnap = (id) => {
+    return {
+        type : SELECT_SNAP,
+        id
+    }
+}
+
+export const editSnap = (id) => {
+    return {
+        type : EDIT_SNAP,
+        id
+    }
+}
+//*************************** */
 
 export const deleteSnap = (id) => {
     return {
@@ -23,30 +44,32 @@ export const deleteSnap = (id) => {
     }
 }
 
-export const createSnap = (formName, snap) => {
+export const saveSnap = (formName, snap, mode, id = '') => {
     return {
-        type : CREATE_SNAP,
-        path : HOME_PATH,
-        method : 'post',
-        formName,
-        snap
-    }
-}
-
-export const updateSnap = (formName, snap , id) => {
-    return {
-        type : UPDATE_SNAP,
-        path : `${VIEW_SNAP_PATH}/${id}`,
-        method : 'put',
+        type : `${mode}_SNAP`,
+        // path : HOME_PATH,
+        method : mode === 'CREATE' ? 'post' : 'put',
         formName,
         snap,
         id
     }
+}
+
+// export const updateSnap = (formName, snap , id) => {
+//     return {
+//         type : UPDATE_SNAP,
+//         path : `${VIEW_SNAP_PATH}/${id}`,
+//         method : 'put',
+//         formName,
+//         snap,
+//         id
+//     }
 
 export const cancelSnap = (formName, mode) => {
     return {
         type : CANCEL_SNAP,
-        path : mode === 'Create New' ? HOME_PATH : VIEW_SNAP_PATH,
+        mode,
+        // path : mode === 'CREATE' ? HOME_PATH : VIEW_SNAP_PATH,
         formName,
     }
 }
