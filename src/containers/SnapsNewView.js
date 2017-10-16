@@ -13,7 +13,8 @@ class SnapsNewView extends Component {
     }
 
     onCancel = () => {
-        this.props.cancelSnap(formName, this.props.mode)
+        const { mode, cancelSnap, match : {params} } = this.props
+        cancelSnap(formName, mode, params.id)
     }
 
     render() {
@@ -24,7 +25,6 @@ class SnapsNewView extends Component {
                         {...this.props}
                         onSubmit={this.onSubmit}
                         onCancel={this.onCancel}
-                        value={this.props.snap}
                     />
                 </Box>
             </App>
@@ -46,15 +46,16 @@ const validate = values => {
 }
 
 const mapStateToProps = ({ snaps : { snaps } }, ownProps) => {
-    return {snap : snaps[ownProps.match.params.id]}
+    return {initialValues : snaps[ownProps.match.params.id]}
 }
 
-export default reduxForm(
-    {form:formName, validate}
+export default connect(
+    mapStateToProps, { submitSnap, cancelSnap }
 )(
-    connect(
-        mapStateToProps, { submitSnap, cancelSnap }
+    reduxForm(
+        {form:formName, enableReinitialize : true, validate}
     )(
         SnapsNewView
     )
 )
+

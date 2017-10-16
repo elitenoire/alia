@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getSingleSnap, deleteSnap, editSnap } from '../actions'
+import { getSingleSnap, deleteSnap, editSnap, backToHome } from '../actions'
 // import { EDIT_SNAP_PATH } from '../constants'
 import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Box, Button, Icons } from 'grommet'
 
@@ -10,6 +10,9 @@ class SnapSingleView extends Component {
     componentWillMount(){
         const { id } = this.props.match.params
         this.props.getSingleSnap(id)
+    }
+    onBackCLick = () => {
+        this.props.backToHome()
     }
     onEdit = () => { //TODO : decouple edit event from button, dispatch action instead
         const { id } = this.props.match.params
@@ -21,6 +24,7 @@ class SnapSingleView extends Component {
         this.props.deleteSnap(id)
     }
     renderSnap = () => {
+        //TODO : make Anchor Back to Home Reusable
         const { isFetching, snap } = this.props
         return isFetching ? <Icons.Spinning size="xlarge"/>
                     : (
@@ -30,7 +34,7 @@ class SnapSingleView extends Component {
                         >
                         <Box flex full="horizontal" align="center">
                             <Menu full="horizontal" direction="row" justify="between" inline responsive>
-                                <Anchor icon={<LinkPrevious />} label="Back to Home" path="/"/>
+                                <Anchor icon={<LinkPrevious />} label="Back to Home" onClick={this.onBackCLick}/>
                                 <Box direction="row" pad={{between : 'small'}}>
                                     <Button icon={<Edit />} box colorIndex="neutral-1" onClick={this.onEdit} />
                                     <Button icon={<Trash />} box colorIndex="critical" onClick={this.onDelete} />
@@ -75,4 +79,4 @@ const mapStateToProps = ({ snaps : {snaps, isFetching} }, ownProps) => {
     return {snap : snaps[ownProps.match.params.id], isFetching}
 }
 
-export default connect(mapStateToProps, { getSingleSnap, deleteSnap, editSnap })(SnapSingleView)
+export default connect(mapStateToProps, { getSingleSnap, deleteSnap, editSnap, backToHome })(SnapSingleView)

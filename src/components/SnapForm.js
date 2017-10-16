@@ -5,8 +5,8 @@ import { Article, Header, Heading, Section, Footer, Box, Button, Form, FormField
 import grommetWrap from '../utils/grommet-wrap'
 
 
-export default SnapForm = (props) => {
-    const { handleSubmit, onSubmit, onCancel, value, mode } = props
+const SnapForm = (props) => {
+    const { handleSubmit, onSubmit, onCancel, mode } = props
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Article>
@@ -16,13 +16,13 @@ export default SnapForm = (props) => {
                 <Section>
                     <FormFields>
                         <Field name="title" label="Title" id="title-1" placeholder="Snap Title"
-                            value={ value.title || ''} component={TextInputWithFormField} />
+                            component={TextInputWithFormField} />
 
                         <Field name="categories" label="Categories" id="tags-1" placeholder="Tags"
-                            value={ value.categories || ''} component={TextInputWithFormField} />
+                            component={TextInputWithFormField} />
 
                         <Field name="content" label="Content" id="content-1" rows={5}
-                            value={ value.content || ''} component={TextAreaWithFormField} />
+                            component={TextAreaWithFormField} />
                     </FormFields>
                 </Section>
                 <Footer justify="end">
@@ -38,5 +38,7 @@ export default SnapForm = (props) => {
 const TextInputWithFormField = grommetWrap(TextInput)
 
 const TextAreaWithFormField = grommetWrap(TextArea)
+
+export default SnapForm
 
 

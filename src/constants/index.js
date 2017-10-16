@@ -15,18 +15,17 @@ export const SUBMIT_SNAP = 'SUBMIT_SNAP'
 // export const START_SUBMIT = 'START_SUBMIT'
 // export const STOP_SUBMIT = 'STOP_SUBMIT'
 export const UPDATE_SNAP = 'UPDATE_SNAP'
-export const UPDATE_SNAP_PASS = 'UPDATE_SNAP_PASS'
+// export const UPDATE_SNAP_PASS = 'UPDATE_SNAP_PASS'
 export const UPDATE_SNAP_FAIL = 'UPDATE_SNAP_FAIL'
 
 //Route changer -  from UI
 export const ADD_SNAP = 'ADD_SNAP'
 export const SELECT_SNAP = 'SELECT_SNAP'
 export const EDIT_SNAP = 'EDIT_SNAP'
-export const ADD_SNAP = 'ADD_SNAP'
-export const ADD_SNAP = 'ADD_SNAP'
+export const BACK_HOME = 'HOME_BACK'
 
 //Route changer - from Saga
-export const DELETE_SNAP_CACHE = 'DELETE_SNAP_CACHE'
+export const DELETE_SNAP_PASS = 'DELETE_SNAP_PASS'
 export const CREATE_SNAP_PASS = 'CREATE_SNAP_PASS'
 export const UPDATE_SNAP_PASS = 'UPDATE_SNAP_PASS'
 export const CANCEL_CREATE_SNAP = 'CANCEL_CREATE_SNAP'

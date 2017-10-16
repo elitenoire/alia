@@ -27,15 +27,15 @@ api.getSingleSnap = async (id) => {
     }
 }
 
-api.createSnap = async (snap) => {
-    try{
-        const response = await client.post('/snaps' , snap) // + API_KEY, snap)
-        return { response }
-    }
-    catch(err){
-        return {error : err.message}
-    }
-}
+// api.createSnap = async (snap) => {
+//     try{
+//         const response = await client.post('/snaps' , snap) // + API_KEY, snap)
+//         return { response }
+//     }
+//     catch(err){
+//         return {error : err.message}
+//     }
+// }
 
 api.deleteSnap = async (id) => {
     try{

@@ -1,4 +1,4 @@
-import { GET_SNAPS, GET_SNAP_SINGLE, CREATE_SNAP, UPDATE_SNAP,
+import { GET_SNAPS, GET_SNAP_SINGLE, CREATE_SNAP, UPDATE_SNAP, BACK_HOME,
     DELETE_SNAP, CANCEL_SNAP , SUBMIT_SNAP, ADD_SNAP, SELECT_SNAP, EDIT_SNAP,
     HOME_PATH, VIEW_SNAP_PATH } from '../constants'
 
@@ -11,6 +11,12 @@ export const getSnaps = () => {
 export const addSnap = () => {
     return {
         type : ADD_SNAP
+    }
+}
+
+export const backToHome = () => {
+    return {
+        type :  BACK_HOME
     }
 }
 //***********NEED TO DRY CODE ************* */
@@ -39,7 +45,6 @@ export const editSnap = (id) => {
 export const deleteSnap = (id) => {
     return {
         type : DELETE_SNAP,
-        path : HOME_PATH,
         id
     }
 }
@@ -47,7 +52,6 @@ export const deleteSnap = (id) => {
 export const saveSnap = (formName, snap, mode, id = '') => {
     return {
         type : `${mode}_SNAP`,
-        // path : HOME_PATH,
         method : mode === 'CREATE' ? 'post' : 'put',
         formName,
         snap,
@@ -64,17 +68,18 @@ export const saveSnap = (formName, snap, mode, id = '') => {
 //         snap,
 //         id
 //     }
+//}
 
-export const cancelSnap = (formName, mode) => {
+export const cancelSnap = (formName, mode, id = '') => {
     return {
         type : CANCEL_SNAP,
         mode,
-        // path : mode === 'CREATE' ? HOME_PATH : VIEW_SNAP_PATH,
+        id,
         formName,
     }
 }
 
-export const submitSnap = (formName, snap, mode, id) => {
+export const submitSnap = (formName, snap, mode, id = '') => {
     return {
         type : SUBMIT_SNAP,
         formName,
@@ -84,4 +89,3 @@ export const submitSnap = (formName, snap, mode, id) => {
     }
 }
 
-}

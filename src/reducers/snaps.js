@@ -1,5 +1,5 @@
 import { GET_SNAPS_PASS, GET_SNAPS_FAIL, DELETE_SNAP_CACHE, DELETE_SNAP_FAIL,
-     GET_SNAP_SINGLE_PASS, GET_SNAP_SINGLE_FAIL} from '../constants'
+     GET_SNAP_SINGLE_PASS, GET_SNAP_SINGLE_FAIL, UPDATE_SNAP_PASS} from '../constants'
 
 const INITIAL_STATE = { isFetching : true, snaps : {}, error : ''}
 

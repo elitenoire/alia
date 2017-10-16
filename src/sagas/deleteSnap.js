@@ -1,17 +1,17 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import { replace } from 'react-router-redux'
-import { DELETE_SNAP, DELETE_SNAP_FAIL, DELETE_SNAP_CACHE } from '../constants'
+// import { replace } from 'react-router-redux'
+import { DELETE_SNAP, DELETE_SNAP_FAIL,
+    DELETE_SNAP_CACHE, DELETE_SNAP_PASS } from '../constants'
 import { api } from '../utils'
 
-function* deleteSingleSnap({ id, path }){
+function* deleteSingleSnap({ id }){
     const { error } = yield call(api.deleteSnap, id) //delete from backend api
     if(error){
         yield put({type : DELETE_SNAP_FAIL, error})
     }
     else {
-        // yield put(replace(path))
+        yield put({type : DELETE_SNAP_PASS })
         yield put({type : DELETE_SNAP_CACHE, id }) //delete from local cache
-        // yield put({type : DELETE_SNAP_PASS })
     }
 }
 

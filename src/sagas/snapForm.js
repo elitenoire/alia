@@ -1,6 +1,6 @@
 // import { stopSubmit } from 'redux-form'
 import { takeEvery, take, put, race} from 'redux-saga/effects'
-import { LOCATION_CHANGE, push } from 'react-router-redux'
+import { LOCATION_CHANGE } from 'react-router-redux'
 import { SUBMIT_SNAP, CANCEL_SNAP } from '../constants'
 import { saveSnap } from '../actions'
 // import { api } from '../utils'
@@ -13,7 +13,8 @@ function* manageSnapForm({ payload : { pathname } }){
             submit : take(SUBMIT_SNAP)
         })
         if(cancel){
-            yield put({type : `CANCEL_${cancel.mode}_SNAP`})
+            const { mode, id } = cancel
+            yield put({type : `CANCEL_${mode}_SNAP` , id})
             return //not necessary cuz of else statement
         }
         else {
