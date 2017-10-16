@@ -5,9 +5,6 @@ const INITIAL_STATE = { isFetching : true, snaps : {}, error : ''}
 
 export default (state = INITIAL_STATE, { type, error, snaps, snap, id }) => {
     switch(type){
-        // case GET_SNAPS :
-        // case GET_SNAP_SINGLE :
-        //     return {...state, isFetching : true}
         case GET_SNAPS_PASS :
             return {...state, isFetching : false, snaps}
         case GET_SNAP_SINGLE_PASS :

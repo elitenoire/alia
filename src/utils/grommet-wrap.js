@@ -1,3 +1,9 @@
+/**
+ * Base Code from https://github.com/Eiryyy/redux-form-binding-grommet
+ * All credit goes to github user Eiryyy
+ * Modified to fit this project because of webpack issues with Create-React-App
+ */
+
 import React, { Component } from 'react'
 import mapProps from './map-props'
 import FormField from 'grommet/components/FormField'

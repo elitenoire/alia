@@ -5,7 +5,7 @@ import { App, Box } from 'grommet'
 import SnapForm from '../components/SnapForm'
 import { submitSnap, cancelSnap } from '../actions'
 
-class SnapsNewView extends Component {
+class SnapsMaker extends Component {
 
     onSubmit = values => {
         const { mode, submitSnap, match : {params} } = this.props
@@ -55,7 +55,7 @@ export default connect(
     reduxForm(
         {form:formName, enableReinitialize : true, validate}
     )(
-        SnapsNewView
+        SnapsMaker
     )
 )
 

@@ -1,9 +1,8 @@
-// import { stopSubmit } from 'redux-form'
 import { takeEvery, take, put, race} from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import { SUBMIT_SNAP, CANCEL_SNAP } from '../constants'
 import { saveSnap } from '../actions'
-// import { api } from '../utils'
+
 
 function* manageSnapForm({ payload : { pathname } }){
     //doesn't cancel api call - need FIXING
@@ -20,27 +19,9 @@ function* manageSnapForm({ payload : { pathname } }){
         else {
             const { formName, snap, mode, id } = submit
             yield put(saveSnap(formName, snap, mode, id))
-            // if(mode === "Create New"){
-            //     yield put(createSnap(formName, snap))
-            // }
-            // if(mode === "Edit"){
-            //     yield put(updateSnap(formName, snap, id))
-            // }
         }
     }
-    // yield race({
-    //     cancel : take(CANCEL_CREATE_SNAP),
-    //     snap : take(CREATE_SNAP_PASS || CREATE_SNAP_FAIL)
-    // })
-    // const { response, error } = yield call(api.createSnap, snap)
-    // if(response){
-    //     // const res = yield call(snapsParser, response.data) //need to edit
-    //     yield put({type : CREATE_SNAP_PASS, snap : response.data})
-    // }
-    // else
-    //     yield put({type : CREATE_SNAP_FAIL, error})
 }
-
 
 
 //WATCHER SAGA - listen for dispatched action, call worker to handle action

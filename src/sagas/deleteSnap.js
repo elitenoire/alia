@@ -1,5 +1,4 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-// import { replace } from 'react-router-redux'
 import { DELETE_SNAP, DELETE_SNAP_FAIL,
     DELETE_SNAP_CACHE, DELETE_SNAP_PASS } from '../constants'
 import { api } from '../utils'
@@ -21,6 +20,8 @@ export default function* watchDeleteSnap(){
     yield takeEvery(DELETE_SNAP, deleteSingleSnap)
 }
 
+// Consider this code to handle multiple delete request from a list, maybe
+//
 // export default function* watchDeleteSnap() {
 //     // 1- Create a channel for request actions
 //     const requestChan = yield actionChannel(DELETE_SNAP)

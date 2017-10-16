@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSingleSnap, deleteSnap, editSnap, backToHome } from '../actions'
-// import { EDIT_SNAP_PATH } from '../constants'
 import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Box, Button, Icons } from 'grommet'
 
 const { Note, Edit, Tag, Trash, LinkPrevious } = Icons.Base
@@ -14,9 +13,8 @@ class SnapSingleView extends Component {
     onBackCLick = () => {
         this.props.backToHome()
     }
-    onEdit = () => { //TODO : decouple edit event from button, dispatch action instead
+    onEdit = () => {
         const { id } = this.props.match.params
-        // this.props.history.push(`${EDIT_SNAP_PATH}/${id}`)
         this.props.editSnap(id)
     }
     onDelete = () => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getSnaps, selectSnap, addSnap } from '../actions'
-// import { Link } from 'react-router-dom'
 import { App, Title, Box, Card, Header, Footer, Label, Tiles, Tile, Anchor, Icons} from 'grommet'
 
 class SnapsView extends Component {
@@ -9,8 +8,7 @@ class SnapsView extends Component {
         this.props.getSnaps()
     }
 
-    onSelectSnap(id){ //TODO : decouple select event from button
-        // this.props.history.push(`/snaps/${id}`)
+    onSelectSnap(id){
         this.props.selectSnap(id)
     }
 

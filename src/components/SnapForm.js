@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field } from 'redux-form'
 import TextArea from 'react-autosize-textarea'
 import { Article, Header, Heading, Section, Footer, Box, Button, Form, FormFields, TextInput } from 'grommet'

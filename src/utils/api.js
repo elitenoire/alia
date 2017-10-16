@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-// const API_KEY = '?key=AliaSnaps123'
 const client = axios.create({
-    baseURL: 'https://alia-server.herokuapp.com/api' //'http://reduxblog.herokuapp.com/api'
+    baseURL: 'https://alia-server.herokuapp.com/api'
   });
 
 const api = {}
@@ -13,7 +12,12 @@ api.getSnaps = async () => {
         return { response } //return response and handle data in saga?
     }
     catch(err){
-        return {error : err.message}
+        console.log(JSON.stringify(err))
+        // if(err.response){
+        //     console.log(err.response.status)
+        //     console.log(err.response.data)
+        // }
+        return {error : err.response.status}
     }
 }
 
@@ -23,19 +27,9 @@ api.getSingleSnap = async (id) => {
         return { response }
     }
     catch(err){
-        return {error : err.messageg}
+        return {error : err.message}
     }
 }
-
-// api.createSnap = async (snap) => {
-//     try{
-//         const response = await client.post('/snaps' , snap) // + API_KEY, snap)
-//         return { response }
-//     }
-//     catch(err){
-//         return {error : err.message}
-//     }
-// }
 
 api.deleteSnap = async (id) => {
     try{
@@ -46,16 +40,6 @@ api.deleteSnap = async (id) => {
         return {error : err.message}
     }
 }
-
-// api.updateSnap = async (snap, id) => {
-//     try{
-//         const response = await client.put('/snaps/' + id, snap) // + API_KEY, snap)
-//         return { response }
-//     }
-//     catch(err){
-//         return {error : err.message}
-//     }
-// }
 
 api.saveSnap = async (snap, method, id = '') => {
     try{

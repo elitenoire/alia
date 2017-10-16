@@ -8,8 +8,10 @@ function* loadSingleSnap({ id }){
         // const snaps = yield call(snapsParser, response.data)
         yield put({type : GET_SNAP_SINGLE_PASS, snap : response.data})
     }
-    else
+    else{
+        // console.error( error)
         yield put({type : GET_SNAP_SINGLE_FAIL, error})
+    }
 }
 
 
