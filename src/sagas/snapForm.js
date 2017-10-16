@@ -1,24 +1,29 @@
 // import { stopSubmit } from 'redux-form'
 import { takeEvery, take, put, race} from 'redux-saga/effects'
 import { LOCATION_CHANGE, push } from 'react-router-redux'
-import { SUBMIT_SNAP, CANCEL_CREATE_SNAP } from '../constants'
-import { createSnap } from '../actions'
+import { SUBMIT_SNAP, CANCEL_SNAP } from '../constants'
+import { createSnap, updateSnap } from '../actions'
 // import { api } from '../utils'
 
 function* manageSnapForm({ payload : { pathname } }){
     //doesn't cancel api call - need FIXING
     if(pathname === '/snaps/new'){
         const { cancel, submit } = yield race({
-            cancel : take(CANCEL_CREATE_SNAP),
+            cancel : take(CANCEL_SNAP),
             submit : take(SUBMIT_SNAP)
         })
         if(cancel){
-            yield put(push('/'))
+            yield put(push(cancel.path))
             return //not necessary cuz of else statement
         }
         else {
-            const { snap, formName } = submit
-            yield put(createSnap(snap, formName))
+            const { formName, snap, mode, id } = submit
+            if(mode === "Create New"){
+                yield put(createSnap(formName, snap))
+            }
+            if(mode === "Edit"){
+                yield put(updateSnap(formName, snap, id))
+            }
         }
     }
     // yield race({

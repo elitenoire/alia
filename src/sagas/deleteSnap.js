@@ -3,13 +3,13 @@ import { replace } from 'react-router-redux'
 import { DELETE_SNAP, DELETE_SNAP_FAIL, DELETE_SNAP_CACHE } from '../constants'
 import { api } from '../utils'
 
-function* deleteSingleSnap({ id }){
+function* deleteSingleSnap({ id, path }){
     const { error } = yield call(api.deleteSnap, id) //delete from backend api
     if(error){
         yield put({type : DELETE_SNAP_FAIL, error})
     }
     else {
-        yield put(replace('/'))
+        yield put(replace(path))
         yield put({type : DELETE_SNAP_CACHE, id }) //delete from local cache
         // yield put({type : DELETE_SNAP_PASS })
     }

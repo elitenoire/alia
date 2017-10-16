@@ -3,26 +3,29 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form'
 import { App, Box } from 'grommet'
 import SnapForm from '../components/SnapForm'
-import { submitSnap, cancelCreateSnap } from '../actions'
+import { submitSnap, cancelSnap } from '../actions'
 
 class SnapsNewView extends Component {
 
     onSubmit = values => {
-        const { mode, submitSnap } = this.props
-        this.props.submitSnap(values, mode)
+        const { mode, submitSnap, match : {params} } = this.props
+        submitSnap(formName, values, mode, params.id)
     }
 
     onCancel = () => {
-        this.props.cancelCreateSnap(formName, '/')
+        this.props.cancelSnap(formName, this.props.mode)
     }
 
     render() {
         return (
             <App>
-                <Box>
-                    <SnapForm {
-                        ...this.props, onSubmit={onSubmit}, onCancel={this.onCancel}, value={this.props.snap}
-                    } />
+                <Box flex full="horizontal">
+                    <SnapForm
+                        {...this.props}
+                        onSubmit={this.onSubmit}
+                        onCancel={this.onCancel}
+                        value={this.props.snap}
+                    />
                 </Box>
             </App>
         );
@@ -50,7 +53,7 @@ export default reduxForm(
     {form:formName, validate}
 )(
     connect(
-        mapStateToProps, { submitSnap, cancelCreateSnap }
+        mapStateToProps, { submitSnap, cancelSnap }
     )(
         SnapsNewView
     )

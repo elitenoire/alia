@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getSingleSnap, deleteSnap } from '../actions'
+import { getSingleSnap, deleteSnap, editSnap } from '../actions'
+import { EDIT_SNAP_PATH } from '../constants'
 import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Box, Button, Icons } from 'grommet'
 
 const { Note, Edit, Tag, Trash, LinkPrevious } = Icons.Base
@@ -10,7 +11,11 @@ class SnapSingleView extends Component {
         const { id } = this.props.match.params
         this.props.getSingleSnap(id)
     }
-    onEdit = () => {}
+    onEdit = () => { //TODO : decouple edit event from button, dispatch action instead
+        const { id } = this.props.match.params
+        // this.props.history.push(`${EDIT_SNAP_PATH}/${id}`)
+        this.props.editSnap(id)
+    }
     onDelete = () => {
         const { id } = this.props.match.params
         this.props.deleteSnap(id)
@@ -70,4 +75,4 @@ const mapStateToProps = ({ snaps : {snaps, isFetching} }, ownProps) => {
     return {snap : snaps[ownProps.match.params.id], isFetching}
 }
 
-export default connect(mapStateToProps, { getSingleSnap, deleteSnap })(SnapSingleView)
+export default connect(mapStateToProps, { getSingleSnap, deleteSnap, editSnap })(SnapSingleView)
