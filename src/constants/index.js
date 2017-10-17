@@ -13,6 +13,9 @@ export const DELETE_SNAP_CACHE = 'DELETE_SNAP_CACHE'
 export const SUBMIT_SNAP = 'SUBMIT_SNAP'
 export const UPDATE_SNAP = 'UPDATE_SNAP'
 export const UPDATE_SNAP_FAIL = 'UPDATE_SNAP_FAIL'
+export const DELETE_SNAP_MODAL = 'DELETE_SNAP_MODAL'
+export const TOGGLE_DELETE_MODAL = 'TOGGLE_DELETE_MODAL'
+export const CANCEL_DELETE_MODAL = 'CANCEL_DELETE_MODAL'
 
 //Route changer -  from UI
 export const ADD_SNAP = 'ADD_SNAP'

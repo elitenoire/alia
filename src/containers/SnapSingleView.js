@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getSingleSnap, deleteSnap, editSnap, backToHome } from '../actions'
+import { getSingleSnap, deleteSnap, editSnap, backToHome, cancelModal, openModal } from '../actions'
 import { App, Anchor, Header, Article, Animate, Heading, Headline, Menu, Paragraph, Label, Footer, Box, Button, Icons } from 'grommet'
+import Modal from '../components/Modal'
 
 const { Note, Edit, Tag, Trash, LinkPrevious } = Icons.Base
 
@@ -18,11 +19,18 @@ class SnapSingleView extends Component {
         this.props.editSnap(id)
     }
     onDelete = () => {
+        this.props.openModal()
+    }
+    onDeleteModal = () => {
         const { id } = this.props.match.params
         this.props.deleteSnap(id)
     }
+    onCancel = () => {
+        this.props.cancelModal()
+    }
     renderSnap = () => {
         //TODO : make Anchor Back to Home Reusable
+        //TODO : Should not fetch for unkown 404 snaps route; Redirect
         const { isFetching, snap } = this.props
         return isFetching ? <Icons.Spinning size="xlarge"/>
                     : (
@@ -54,6 +62,16 @@ class SnapSingleView extends Component {
                         </Animate>
                     )
     }
+
+    renderDeleteModal = () => {
+        return this.props.deleteModal ? (
+            <Modal
+                onCancel={this.onCancel}
+                onDelete={this.onDeleteModal}
+            />
+            ) : null
+    }
+
     render(){
         return (
             <App>
@@ -68,13 +86,17 @@ class SnapSingleView extends Component {
                     
                     <Footer>Footer</Footer>
                 </Article>
+                {this.renderDeleteModal()}
             </App>
         )
     }
 }
 
-const mapStateToProps = ({ snaps : {snaps, isFetching} }, ownProps) => {
-    return {snap : snaps[ownProps.match.params.id], isFetching}
+const mapStateToProps = ({ snaps : { snaps, isFetching, deleteModal } }, ownProps) => {
+    return {snap : snaps[ownProps.match.params.id], isFetching, deleteModal}
 }
 
-export default connect(mapStateToProps, { getSingleSnap, deleteSnap, editSnap, backToHome })(SnapSingleView)
+export default connect(
+    mapStateToProps,
+    { getSingleSnap, deleteSnap, editSnap, backToHome, cancelModal, openModal }
+)(SnapSingleView)

@@ -1,6 +1,6 @@
 import { GET_SNAPS, GET_SNAP_SINGLE, BACK_HOME, DELETE_SNAP,
     CANCEL_SNAP , SUBMIT_SNAP, ADD_SNAP, SELECT_SNAP, EDIT_SNAP,
-    } from '../constants'
+    TOGGLE_DELETE_MODAL, CANCEL_DELETE_MODAL, DELETE_SNAP_MODAL } from '../constants'
 
 //***********NEED TO DRY CODE ************* */
 export const getSnaps = () => {
@@ -77,6 +77,25 @@ export const submitSnap = (formName, snap, mode, id = '') => {
         snap,
         mode,
         id
+    }
+}
+
+export const showModal = toggle => {
+    return {
+        type : TOGGLE_DELETE_MODAL,
+        toggle,
+    }
+}
+
+export const cancelModal = () => {
+    return {
+        type : CANCEL_DELETE_MODAL
+    }
+}
+
+export const openModal = () => {
+    return {
+        type : DELETE_SNAP_MODAL
     }
 }
 
