@@ -1,7 +1,7 @@
-import { takeEvery, call, put } from 'redux-saga/effects'
-import { DELETE_SNAP, DELETE_SNAP_FAIL, TOGGLE_DELETE_MODAL,
+import { takeEvery, call, put, fork, race, take } from 'redux-saga/effects'
+import { DELETE_SNAP, DELETE_SNAP_FAIL, TOGGLE_DELETE_MODAL, CANCEL_DELETE_MODAL,
     DELETE_SNAP_CACHE, DELETE_SNAP_PASS, DELETE_SNAP_MODAL } from '../constants'
-import { openModal } from '../actions'
+import { showModal } from '../actions'
 import { api } from '../utils'
 
 function* deleteSingleSnap(id){
@@ -16,7 +16,7 @@ function* deleteSingleSnap(id){
 }
 
 function* deleteSnapCheck(){
-    yield put(openModal(true))
+    yield put(showModal(true))
     //wait for UI to cancel or approve delete from modal
     const { deleteOk } = yield race(
         {
@@ -29,7 +29,7 @@ function* deleteSnapCheck(){
         yield fork(deleteSingleSnap, deleteOk.id) //might change to call/spawn ?
     }
     //close modal -> causes it to rerender, need to prevent that as it will make get api request
-    yield put(openModal(false))
+    yield put(showModal(false))
 }
 
 
