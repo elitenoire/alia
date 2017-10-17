@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layer, Columns, Box, Button, Title, Paragraph, Icons, Header, Footer } from 'grommet'
+import { Layer, Box, Button, Title, Paragraph, Icons } from 'grommet'
 
 const Modal = ({ onCancel, onDelete }) => {
     return (

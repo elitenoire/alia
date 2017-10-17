@@ -7,11 +7,12 @@ import grommetWrap from '../utils/grommet-wrap'
 
 const SnapForm = (props) => {
     const { handleSubmit, onSubmit, onCancel, mode } = props
+
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form plain onSubmit={handleSubmit(onSubmit)}>
             <Article>
                 <Header>
-                    <Heading>{`${mode[0].toUpperCase() + mode.slice(1)} Snap`}</Heading>
+                    <Heading>{`${mode[0]}${mode.slice(1).toLowerCase()} Snap`}</Heading>
                 </Header>
                 <Section>
                     <FormFields>
@@ -26,7 +27,7 @@ const SnapForm = (props) => {
                     </FormFields>
                 </Section>
                 <Footer justify="end">
-                    <Box direction="row" align="center" pad={{between : 'small'}}>
+                    <Box direction="row" align="center" margin={{bottom : 'small'}} pad={{between : 'small'}}>
                         <Button label="Save" type="submit" accent />
                         <Button label="Cancel" type="button" onClick={onCancel} critical />
                     </Box>
