@@ -31,7 +31,7 @@ class SnapSingleView extends Component {
     renderSnap = () => {
         //TODO : make Anchor Back to Home Reusable
         //TODO : Should not fetch for unkown 404 snaps route; Redirect
-        const { isFetching, snap } = this.props
+        const { isFetching, snap, color } = this.props
         return isFetching ? <Icons.Spinning size="xlarge"/>
                     : (
                         <Animate
@@ -47,9 +47,9 @@ class SnapSingleView extends Component {
                                 </Box>
                             </Menu>
                             <Box flex full="horizontal" align="center">
-                                <Box basis="1/4" flex full="horizontal" colorIndex="neutral-2-a" margin="small" pad="small" align="center">
+                                <Box basis="1/4" flex full="horizontal" colorIndex={color || 'neutral-2-a'} margin="small" pad="small" align="center">
                                     <Headline size="medium">{snap.title}</Headline>
-                                    <Anchor icon={<Tag />} label={<Label uppercase >{snap.categories}</Label>}disabled />                            
+                                    <Anchor icon={<Tag />} label={<Label uppercase >{snap.categories}</Label>}disabled />
                                 </Box>
                                 <Box basis="3/4" flex full="horizontal" colorIndex="light-1" margin="medium" pad="large" align="center">
                                     <Note size="medium" colorIndex="neutral-1" type="logo"/>
@@ -92,8 +92,8 @@ class SnapSingleView extends Component {
     }
 }
 
-const mapStateToProps = ({ snaps : { snaps, isFetching, deleteModal } }, ownProps) => {
-    return {snap : snaps[ownProps.match.params.id], isFetching, deleteModal}
+const mapStateToProps = ({ snaps : { snaps, color, isFetching, deleteModal } }, ownProps) => {
+    return {snap : snaps[ownProps.match.params.id], color, isFetching, deleteModal}
 }
 
 export default connect(

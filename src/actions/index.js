@@ -28,10 +28,12 @@ export const getSingleSnap = (id) => {
     }
 }
 
-export const selectSnap = (id) => {
+export const selectSnap = (snap, color) => {
     return {
         type : SELECT_SNAP,
-        id
+        id : snap.id,
+        snap,
+        color
     }
 }
 

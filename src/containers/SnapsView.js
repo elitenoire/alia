@@ -8,8 +8,8 @@ class SnapsView extends Component {
         this.props.getSnaps()
     }
 
-    onSelectSnap(id){
-        this.props.selectSnap(id)
+    onSelectSnap(snap, color){
+        this.props.selectSnap(snap, color)
     }
 
     onAddSnap = () => {
@@ -17,15 +17,25 @@ class SnapsView extends Component {
     }
 
     renderSnaps = (snaps) => {
-        return Object.keys(snaps).reduce((list,id) => {
+        const colors = ['neutral-1-a', 'neutral-2-a', 'accent-2-a', 'neutral-3-a',
+                        'neutral-4-a', 'accent-1-a']
+        let count = 0
+        return Object.keys(snaps).reduce((list,id,index) => {
+            const color = colors[index - (colors.length * count)]
             list.push(
-                <Tile key={id} onClick={this.onSelectSnap.bind(this, id)}>
+                <Tile key={id} colorIndex={color}
+                    onClick={this.onSelectSnap.bind(this, snaps[id], color)}
+                >
                     <Card label={snaps[id].categories}
-                    heading={snaps[id].title}
-                    contentPad="small"
+                        heading={snaps[id].title}
+                        contentPad="small"
+                        
                     />
                 </Tile>
             )
+            if((index + 1)/colors.length === count + 1){
+                count++
+            }
             return list
         }, [])
     }
@@ -45,7 +55,7 @@ class SnapsView extends Component {
                         />
                         <Label>New Snap</Label>
                     </Box>
-                    <Tiles fill selectable >
+                    <Tiles fill flush={false} selectable >
                         {this.renderSnaps(this.props.snaps)}
                     </Tiles>
                 </Box>
