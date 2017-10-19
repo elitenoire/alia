@@ -15,11 +15,13 @@
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
-    "redux-saga": "^0.15.6"
+    "redux-saga": "^0.15.6",
+    "source-map-explorer": "^1.5.0"
   },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

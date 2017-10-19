@@ -2,11 +2,12 @@ import { takeEvery, take, put, race} from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import { SUBMIT_SNAP, CANCEL_SNAP } from '../constants'
 import { saveSnap } from '../actions'
+import { HOME_PATH } from '../routes/routeMap'
 
 
 function* manageSnapForm({ payload : { pathname } }){
     //doesn't cancel api call - need FIXING
-    if(pathname === '/snaps/new' || pathname.search(/^\/snaps\/edit\/\d+\/?$/) !== -1 ){
+    if(pathname === HOME_PATH || pathname.search(/^(\/alia)?\/snaps\/edit\/\d+\/?$/) !== -1 ){
         const { cancel, submit } = yield race({
             cancel : take(CANCEL_SNAP),
             submit : take(SUBMIT_SNAP)
