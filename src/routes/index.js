@@ -9,10 +9,10 @@ const Router = () => {
     return (
         <div>
             <Switch>
-                <Route path={HOME_PATH} exact component={SnapsView} />
-                <Route path={CREATE_SNAP_PATH} render={props => <SnapsMaker {...props} mode="CREATE" />} />
-                <Route path={EDIT_SNAP_PATH + ':id'} render={props => <SnapsMaker {...props} mode="UPDATE" />} />
-                <Route path={VIEW_SNAP_PATH + ':id'} component={SnapSingleView} />
+                <Route path={process.env.PUBLIC_URL + HOME_PATH} exact component={SnapsView} />
+                <Route path={process.env.PUBLIC_URL + CREATE_SNAP_PATH} render={props => <SnapsMaker {...props} mode="CREATE" />} />
+                <Route path={process.env.PUBLIC_URL + EDIT_SNAP_PATH + ':id'} render={props => <SnapsMaker {...props} mode="UPDATE" />} />
+                <Route path={process.env.PUBLIC_URL + VIEW_SNAP_PATH + ':id'} component={SnapSingleView} />
             </Switch>
         </div>
     )

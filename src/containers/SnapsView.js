@@ -17,8 +17,8 @@ class SnapsView extends Component {
     }
 
     renderSnaps = (snaps) => {
-        const colors = ['neutral-1-a', 'neutral-2-a', 'accent-2-a', 'neutral-3-a',
-                        'neutral-4-a', 'accent-1-a']
+        const colors = ['neutral-1-a', 'ok', 'neutral-2-a', 'accent-2-a', 'neutral-3-a',
+                        'warning', 'neutral-4-a', 'accent-1-a', 'critical']
         let count = 0
         return Object.keys(snaps).reduce((list,id,index) => {
             const color = colors[index - (colors.length * count)]
